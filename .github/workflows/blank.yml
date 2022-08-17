@@ -12,3 +12,5 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
+      - name: clone
+        run: git clone git@github.com:peeweep-test/dde-dock.git
