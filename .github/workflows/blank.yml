@@ -15,7 +15,11 @@ jobs:
       - run: |
           mkdir ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          
         env:
           SSH_KEY: ${{secrets.TEST}}
       - name: clone
+        env:
+          GIT_SSH_COMMAND: "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
         run: git clone git@github.com:peeweep-test/dde-dock.git
