@@ -105,7 +105,7 @@ func main() {
 					log.Fatal(err)
 				}
 				_, err = execCommand(ctx, workdir, "mkdir", "-p", filepath.Dir(path))
-				_, err = execCommand(ctx, "./", "cp", config.Src, filepath.Join(workdir, path))
+				_, err = execCommand(ctx, workdir, "cp", filepath.Join("../../", config.Src), path)
 				if err != nil {
 					log.Fatal(err)
 				}
