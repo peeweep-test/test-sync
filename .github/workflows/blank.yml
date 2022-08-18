@@ -23,9 +23,10 @@ jobs:
           KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
       - name: clone
         run: |
-          git config -g user.user wurongjie
-          git config -g user.email wurongjie@deepin.org
+          git config --global user.user wurongjie
+          git config --global user.email wurongjie@deepin.org
           git clone git@github.com:peeweep-test/dde-dock.git
           cd dde-dock
           date > test
           git commit -a -m "Test"
+          git push
