@@ -12,7 +12,9 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
-      - run: echo "$SSH_KEY" > ~/.ssh/id_rsa
+      - run: |
+          mkdir ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
         env:
           SSH_KEY: ${{secrets.TEST}}
       - name: clone
