@@ -26,7 +26,9 @@ jobs:
         run: |
           git clone git@github.com:peeweep-test/dde-dock.git
           cd dde-dock
-          date > test
-          git add :/
-          git commit -a -m "Test"
-          git push
+          for i in {1..500}; do
+              date > date.txt
+              git add :/
+              git commit -a -m "test ${date}"
+              git push
+          done
