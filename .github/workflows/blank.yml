@@ -25,6 +25,4 @@ jobs:
               repo: context.repo.repo,
               ref: pull.data.head.sha,
             });
-            for(const run of listResp.data){
-              console.log("item",run)
-            }
+            console.log("", listResp)
