@@ -12,23 +12,11 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
-      - run: |
-          mkdir ~/.ssh
-          echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
-          echo "$SSH_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          git config --global user.name wurongjie
-          git config --global user.email wurongjie@deepin.org
-        env:
-          SSH_KEY: ${{secrets.TEST}}
-          KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
-      - name: clone
-        run: |
-          git clone git@github.com:peeweep-test/dde-dock.git
-          cd dde-dock
-          for i in {1..500}; do
-              date > date.txt
-              git add :/
-              git commit -a -m "test ${date}"
-              git push
-          done
+      - uses: actions/github-script@v5
+        with:
+          script: |
+            let checkNameGroup = "build"
+            if(!checkNameGroup.startsWith("/")){
+              checkNameGroup = '/' + checkNameGroup
+            }
+            console.log(checkNameGroup)
