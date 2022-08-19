@@ -25,4 +25,4 @@ jobs:
               repo: context.repo.repo,
               ref: pull.data.head.sha,
             });
-            console.log("", listResp)
+            console.log("", listResp.data.check_suites)
