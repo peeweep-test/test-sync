@@ -15,8 +15,16 @@ jobs:
       - uses: actions/github-script@v5
         with:
           script: |
-            let checkNameGroup = "build"
-            if(!checkNameGroup.startsWith("/")){
-              checkNameGroup = '/' + checkNameGroup
+            const pull = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+            })
+            const listResp = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: pull.data.head.sha,
+            });
+            for(const run of listResp.data.check_runs){
+              console.log(run)
             }
-            console.log(checkNameGroup)
